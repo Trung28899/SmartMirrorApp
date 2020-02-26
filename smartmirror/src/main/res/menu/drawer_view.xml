@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".navigation">
+    <group android:checkableBehavior="single">
+        <item
+            style="@style/AppTheme"
+            android:id="@+id/appbar"
+            android:title="Sign out"
+            app:showAsAction="never"
+            android:textColor="#000000"
+            android:clickable="true"
+            android:orderInCategory="1"></item>
+
+        <item android:title="Functions">
+            <menu>
+                <item
+                    android:id="@+id/monitor10"
+                    android:clickable="true"
+                    android:textColor="#000000"
+                    android:title="Monitor" />
+                <item
+                    android:id="@+id/led10"
+                    android:clickable="true"
+                    android:textColor="#000000"
+                    android:title="LED" />
+                <item
+                    android:id="@+id/speaker10"
+                    android:clickable="true"
+                    android:textColor="#000000"
+                    android:title="Speaker" />
+                <item
+                    android:id="@+id/setting10"
+                    android:clickable="true"
+                    android:textColor="#000000"
+                    android:title="Setting" />
+            </menu>
+        </item>
+        android:checkableBehavior="single"
+    </group>
+
+</menu>

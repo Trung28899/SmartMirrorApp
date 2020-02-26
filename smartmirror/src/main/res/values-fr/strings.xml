@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">SmartMirror</string>
+    <string name="comment1">
+        Miroir, miroir sur le mur, tu es le plus grand d\'entre tous ha ha ha
+    </string>
+    <string name="comment2">
+        Le miroir montrera ce que vous choisissez ha ha
+    </string>
+    <string name="added_toast">
+        Écran par défaut changé
+    </string>
+    <string name="WaitingListingTitle">
+        (Chaque utilisateur a 10 min)
+    </string>
+    <string name="comment5">
+        Créer un nouveau compte
+    </string>
+    <string name="comment6">
+        Bienvenue sur Smart Mirror
+    </string>
+    <string name="comment7">
+    Concevez votre mise en page
+    </string>
+    <string name="comment8">
+    Choisissez vos modules
+    </string>
+    <string name="comment9">
+    Lumière
+    </string>
+    <string name="comment10">
+    Capteur
+    </string>
+    <string name="comment11">
+    Couleur LED
+    </string>
+    <string name="comment12">
+    Réglage des haut-parleurs
+    </string>
+    <string name="comment13">
+    Minuterie de messagerie vocale
+    </string>
+    <string name="comment14">
+    Réglage
+    </string>
+    <string name="comment15">
+        Notification
+    </string>
+    <string name="comment16">
+    Vibration
+    </string>
+    <string name="comment17">
+    Terminé
+    </string>
+    <string name="comment18">
+        Liste
+    </string>
+    <string name="comment19">
+    Chargement en cours
+    </string>
+    <string name="comment20">
+     S\'inscrire
+    </string>
+    <string name="comment21">
+        VEUILLEZ FOURNIR VOTRE NOM
+    </string>
+    <string name="comment22">
+        VEUILLEZ FOURNIR VOTRE COURRIEL
+    </string>
+    <string name="comment23">
+        VEUILLEZ FOURNIR VOTRE MOT DE PASSE
+    </string>
+    <string name="comment27">
+      logo sur
+    </string>
+    <string name="comment28">
+      Introduction
+    </string>
+    <string name="comment29">
+      L\'application est conçue pour accéder aux périphériques de miroir intelligent tels que: moniteur, lumières LED, haut-parleur et microphone
+    </string>
+    <string name="comment30">
+        Entrez votre numéro de miroir
+    </string>
+    <string name="comment31">
+      ( 6 nombres )
+    </string>
+    <string name="comment32">
+        ( Le mot de passe doit contenir au moins 6 caractères )
+    </string>
+    <string name="ledtitle">Écran de contrôle led</string>
+    <string name="createScreentitle">Choisissez votre fond</string>
+    <string name="username_error">username is empty</string>
+</resources>

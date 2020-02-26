@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">SmartMirror</string>
+    <string name="comment1">
+    Mirror, mirror on the wall, you are the greatest of them all ha ha
+    </string>
+    <string name="comment2">
+    Mirror will show what you choose ha ha
+    </string>
+    <string name="added_toast">
+    Default screen changed
+    </string>
+    <string name="WaitingListingTitle">
+    (You have only 10 min)
+    </string>
+    <string name="comment5">
+    Create new account
+    </string>
+    <string name="comment6">
+    Welcome to Smart Mirror
+    </string>
+    <string name="comment7">
+    Design layout and module selection
+    </string>
+    <string name="comment8">
+    Pick your modules
+    </string>
+    <string name="comment9">
+    Light
+    </string>
+    <string name="comment10">
+    Sensor
+    </string>
+    <string name="comment11">
+    LED color
+    </string>
+    <string name="comment12">
+    Speaker Setting
+    </string>
+    <string name="comment13">
+    Voicemail Timer
+    </string>
+    <string name="comment14">
+    Setting
+    </string>
+    <string name="comment15">
+    Notification
+    </string>
+    <string name="comment16">
+    Vibration
+    </string>
+    <string name="comment17">
+    Done
+    </string>
+    <string name="comment18">
+
+    </string>
+    <string name="comment19">
+    Loading in
+    </string>
+    <string name="comment20">
+    Sign up
+    </string>
+    <string name="comment21">
+    PLEASE PROVIDE YOUR NAME
+    </string>
+    <string name="comment22">
+    PLEASE PROVIDE YOUR EMAIL
+    </string>
+    <string name="comment23">
+    PLEASE PROVIDE YOUR PASSWORD
+    </string>
+    <string name="comment27">
+      Log out
+    </string>
+    <string name="comment28">
+      Introduction
+    </string>
+    <string name="comment29">
+      The application is made to gain access of the smart mirror peripherals like: monitor, LED lights, speaker and microphone
+    </string>
+    <string name="comment30">
+      Please Enter Your Mirror\'s Serial Number
+    </string>
+    <string name="comment31">
+      ( 6 numbers )
+    </string>
+    <string name="comment32">
+      ( Password should have at least 6 characters )
+    </string>
+    <string name="ledtitle">Led Control Screen</string>
+    <string name="createScreentitle">Pick your background</string>
+    <string name="username_error">username is empty</string>
+</resources>

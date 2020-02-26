@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "170901069899",
+    "firebase_url": "https://smartmirror-12384.firebaseio.com",
+    "project_id": "smartmirror-12384",
+    "storage_bucket": "smartmirror-12384.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170901069899:android:9032c960093c7a4dd76dce",
+        "android_client_info": {
+          "package_name": "smart.mirror"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170901069899-anvjj27tr90hpk4euvajr3ojgvmv7ag4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj1mJEeU_-juRT3puUrMuyUQQPaIMI3Fk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170901069899-anvjj27tr90hpk4euvajr3ojgvmv7ag4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

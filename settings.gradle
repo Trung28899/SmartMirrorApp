@@ -1,0 +1,2 @@
+include ':app', ':smartmirror', ':HaiderAssign3', ':ScreenLayoutDetect 2', ':TableLayout 2'
+rootProject.name='My Application'
