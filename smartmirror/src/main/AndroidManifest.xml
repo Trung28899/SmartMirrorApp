@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/backgroundtheme">
         <activity android:name=".LoadingScreen"></activity>
-        <activity android:name=".DesignLayoutScreenActivity" />
         <activity android:name=".navigation">
 
             <!-- Specify the parent Activity -->
@@ -20,12 +19,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".loginScreenActivity" />
         </activity>
-        <activity android:name=".Setting" />
         <activity android:name=".WaitingListActivity" />
         <activity android:name=".SignUp" />
+        <activity android:name=".MonitorControlScreenActivity" />
         <activity android:name=".ControlLedScreenActivity" />
         <activity android:name=".SpeakerControlScreenActivity" />
-        <activity android:name=".CreatenewScreenActivity" />
         <activity android:name=".loginScreenActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>

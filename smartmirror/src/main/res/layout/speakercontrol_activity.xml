@@ -17,16 +17,6 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="70dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@drawable/cable" />
-
-    <ImageView
         android:id="@+id/imageView7"
         android:layout_width="72dp"
         android:layout_height="51dp"
@@ -34,7 +24,7 @@
         android:layout_marginTop="105dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/bluetooth" />
+        app:srcCompat="@drawable/timeoff" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -60,41 +50,30 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Switch
-        android:id="@+id/switchBluetooth"
+        android:id="@+id/switchTimeSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="116dp"
-        android:text="Bluetooth"
+        android:text="@string/comment9"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Switch
-        android:id="@+id/switchCable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="170dp"
-        android:text="Cable"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="69dp"
         android:layout_height="54dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:srcCompat="@drawable/volume" />
 
     <SeekBar
         android:id="@+id/seekBarVolume"
         android:layout_width="151dp"
         android:layout_height="20dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="196dp"
         android:max="100"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -104,18 +83,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
+        android:layout_marginTop="516dp"
         android:background="@drawable/round_btlogin"
-        android:layout_marginTop="548dp"
         android:text="Done"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TimePicker
-        android:id="@+id/simpleTimePicker"
+        android:id="@+id/TimePickerSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="284dp"
         android:timePickerMode="spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -123,11 +102,11 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="132dp"
-        android:textColor="#000000"
         android:layout_height="26dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="244dp"
         android:text="@string/comment13"
+        android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="@+id/background"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />

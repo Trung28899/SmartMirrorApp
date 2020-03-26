@@ -29,8 +29,8 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="181dp"
-        android:layout_height="43dp"
+        android:layout_width="214dp"
+        android:layout_height="53dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="150dp"
@@ -41,12 +41,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+
     <Switch
-        android:id="@+id/switchLight"
+        android:id="@+id/switchTimeSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="108dp"
         android:text="@string/comment9"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,65 +57,19 @@
         android:id="@+id/switchSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="172dp"
         android:text="@string/comment10"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="95dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="472dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/comment11"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="114dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="464dp"
-        android:layout_marginTop="104dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        <RadioButton
-            android:id="@+id/radioRed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Red" />
-
-        <RadioButton
-            android:id="@+id/radioBlue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Blue" />
-
-        <RadioButton
-            android:id="@+id/radioGreen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Green" />
-
-        <RadioButton
-            android:id="@+id/radioWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="White" />
-    </RadioGroup>
-
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="260dp"
         android:background="@drawable/round_btlogin"
         android:text="Done"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +79,8 @@
         android:id="@+id/imageView2"
         android:layout_width="70dp"
         android:layout_height="59dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="88dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -133,10 +88,20 @@
         android:id="@+id/imageView10"
         android:layout_width="72dp"
         android:layout_height="52dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TimePicker
+        android:id="@+id/TimePickerSensor"
+        android:layout_width="264dp"
+        android:layout_height="171dp"
+        android:layout_marginStart="352dp"
+        android:layout_marginTop="72dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

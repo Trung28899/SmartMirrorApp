@@ -19,16 +19,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="70dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@drawable/cable" />
-
-    <ImageView
         android:id="@+id/imageView7"
         android:layout_width="72dp"
         android:layout_height="51dp"
@@ -36,7 +26,7 @@
         android:layout_marginTop="72dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/bluetooth" />
+        app:srcCompat="@drawable/timeoff" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -62,38 +52,29 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Switch
-        android:id="@+id/switchBluetooth"
+        android:id="@+id/switchTimeSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="Bluetooth"
+        android:text="@string/comment9"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Switch
-        android:id="@+id/switchCable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:text="Cable"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="69dp"
         android:layout_height="54dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:srcCompat="@drawable/volume" />
 
     <SeekBar
         android:id="@+id/seekBarVolume"
         android:layout_width="151dp"
         android:layout_height="20dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -109,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TimePicker
-        android:id="@+id/simpleTimePicker"
+        android:id="@+id/TimePickerSpeaker"
         android:layout_width="237dp"
         android:layout_height="168dp"
         android:layout_marginStart="400dp"

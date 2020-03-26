@@ -17,16 +17,6 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="140dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@drawable/cable" />
-
-    <ImageView
         android:id="@+id/imageView7"
         android:layout_width="140dp"
         android:layout_height="84dp"
@@ -34,7 +24,7 @@
         android:layout_marginTop="132dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/bluetooth" />
+        app:srcCompat="@drawable/timeoff" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -60,43 +50,31 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Switch
-        android:id="@+id/switchBluetooth"
+        android:id="@+id/switchTimeSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="156dp"
-        android:text="Bluetooth"
+        android:text="@string/comment9"
         android:textSize="30dp"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Switch
-        android:id="@+id/switchCable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="240dp"
-        android:textSize="30dp"
-        android:text="Cable"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="140dp"
         android:layout_height="84dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:srcCompat="@drawable/volume" />
 
     <SeekBar
         android:id="@+id/seekBarVolume"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="332dp"
+        android:layout_marginTop="236dp"
         android:max="100"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -105,8 +83,8 @@
         android:id="@+id/buttonSubmit"
         android:layout_width="197dp"
         android:layout_height="77dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="720dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="640dp"
         android:background="@drawable/round_btlogin"
         android:text="Done"
         android:textSize="30dp"
@@ -114,11 +92,11 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TimePicker
-        android:id="@+id/simpleTimePicker"
+        android:id="@+id/TimePickerSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="484dp"
+        android:layout_marginTop="408dp"
         android:timePickerMode="spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -127,8 +105,8 @@
         android:id="@+id/textView9"
         android:layout_width="288dp"
         android:layout_height="48dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="424dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="344dp"
         android:text="@string/comment13"
         android:textColor="#000000"
         android:textSize="36dp"

@@ -26,8 +26,8 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="370dp"
-        android:layout_height="51dp"
+        android:layout_width="425dp"
+        android:layout_height="99dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="150dp"
@@ -39,11 +39,11 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Switch
-        android:id="@+id/switchLight"
+        android:id="@+id/switchTimeSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="172dp"
         android:text="@string/comment9"
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,94 +53,63 @@
         android:id="@+id/switchSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="284dp"
         android:text="@string/comment10"
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="195dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="161dp"
-        android:text="@string/comment11"
-        android:textColor="#000000"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="127dp"
-        android:layout_height="187dp"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="368dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        <RadioButton
-            android:id="@+id/radioRed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Red"
-            android:textSize="30dp" />
-
-        <RadioButton
-            android:id="@+id/radioBlue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Blue"
-            android:textSize="30dp" />
-
-        <RadioButton
-            android:id="@+id/radioGreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Green"
-            android:textSize="30dp" />
-
-        <RadioButton
-            android:id="@+id/radioWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="White"
-            android:textSize="30dp" />
-    </RadioGroup>
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="216dp"
         android:layout_height="82dp"
         android:layout_marginStart="192dp"
-        android:layout_marginTop="600dp"
-        android:textSize="30dp"
+        android:layout_marginTop="672dp"
         android:background="@drawable/round_btlogin"
         android:text="Done"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="70dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintStart_toEndOf="@+id/switchLight"
+        android:layout_width="102dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="156dp"
+        app:layout_constraintStart_toEndOf="@+id/switchTimeSensor"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="72dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="184dp"
+        android:layout_width="104dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="268dp"
         app:layout_constraintStart_toEndOf="@+id/switchSensor"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="104dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="384dp"
+        android:text="@string/comment33"
+        android:textColor="#000000"
+        android:textSize="36dp"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TimePicker
+        android:id="@+id/TimePickerSensor"
+        android:layout_width="267dp"
+        android:layout_height="217dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="440dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 

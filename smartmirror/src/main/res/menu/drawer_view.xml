@@ -23,17 +23,12 @@
                     android:id="@+id/led10"
                     android:clickable="true"
                     android:textColor="#000000"
-                    android:title="LED" />
+                    android:title="Sensor" />
                 <item
                     android:id="@+id/speaker10"
                     android:clickable="true"
                     android:textColor="#000000"
                     android:title="Speaker" />
-                <item
-                    android:id="@+id/setting10"
-                    android:clickable="true"
-                    android:textColor="#000000"
-                    android:title="Setting" />
             </menu>
         </item>
         android:checkableBehavior="single"

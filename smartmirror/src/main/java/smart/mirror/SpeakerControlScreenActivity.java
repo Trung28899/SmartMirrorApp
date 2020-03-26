@@ -1,10 +1,9 @@
 package smart.mirror;
 
-import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TimePicker;
@@ -20,9 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.sql.Time;
-import java.util.Calendar;
 
 class Speaker{
 
@@ -62,8 +58,7 @@ class Speaker{
 //Smart Device (Haider Ibrahim, Minh Nguyen , Trung Trinh)
 public class SpeakerControlScreenActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Switch switchBluetooth;
-    private Switch switchCable;
+    private Switch switchTimeSpeaker;
     private SeekBar seekBarVolume;
     private TimePicker timePicker;
     private Button buttonSubmit;
@@ -80,15 +75,23 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
         mirrorSerial = getIntent().getStringExtra("mirrorSerial");
-
         speakerDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/SpeakerDatabase");
-
-        switchBluetooth = (Switch) findViewById(R.id.switchBluetooth);
-        switchCable = (Switch) findViewById(R.id.switchCable);
+        switchTimeSpeaker = (Switch) findViewById(R.id.switchTimeSpeaker);
+        final ImageView img7 = (ImageView) findViewById(R.id.imageView7);
+        img7.setImageDrawable(getDrawable(R.drawable.timeoff));
+        switchTimeSpeaker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( switchTimeSpeaker.isChecked()){
+                    img7.setImageDrawable(getDrawable(R.drawable.timeon));
+                } else {
+                    img7.setImageDrawable(getDrawable(R.drawable.timeoff));
+                }
+            }
+        });
         seekBarVolume = (SeekBar) findViewById(R.id.seekBarVolume);
-        timePicker = (TimePicker) findViewById(R.id.simpleTimePicker);
+        timePicker = (TimePicker) findViewById(R.id.TimePickerSpeaker);
         buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
-
         buttonSubmit.setOnClickListener(this);
     }
 
@@ -100,8 +103,7 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         //String id = speakerDatabase.push().getKey();
         String id = "-LuctwHiO7OlJIAP5ljR";
 
-        boolean switchStateBluetooth = switchBluetooth.isChecked();
-        boolean switchStateCable = switchCable.isChecked();
+        boolean switchStateBluetooth = switchTimeSpeaker.isChecked();
         String time = ""+currentHour+":"+currentMinute;
         int volume = seekBarVolume.getProgress();
 

@@ -1,8 +1,6 @@
 package smart.mirror;
 //Smart Device (Haider Ibrahim, Minh Nguyen , Trung Trinh)
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -80,14 +78,11 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
 
         ledDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/LED_Sensor");
 
-        switchLight = (Switch) findViewById(R.id.switchLight);
+        switchLight = (Switch) findViewById(R.id.switchTimeSensor);
         switchSensor = (Switch) findViewById(R.id.switchSensor);
-        radioGroupLights = (RadioGroup) findViewById(R.id.radioGroup);
-        int radioIds = radioGroupLights.getCheckedRadioButtonId() ;
-        chosenButton = findViewById(radioIds);
         final ImageView img1 = (ImageView) findViewById(R.id.imageView2);
         final ImageView img2 = (ImageView) findViewById(R.id.imageView10);
-        img1.setImageDrawable(getDrawable(R.drawable.lightoff1));
+        img1.setImageDrawable(getDrawable(R.drawable.timeoff));
         img2.setImageDrawable(getDrawable(R.drawable.sensoroff));
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         buttonUpdate.setOnClickListener(this);
@@ -95,9 +90,9 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
             @Override
             public void onClick(View v) {
                 if (switchLight.isChecked()){
-                    img1.setImageDrawable(getDrawable(R.drawable.lighton1));
+                    img1.setImageDrawable(getDrawable(R.drawable.timeon));
                 } else {
-                    img1.setImageDrawable(getDrawable(R.drawable.lightoff1));
+                    img1.setImageDrawable(getDrawable(R.drawable.timeoff));
                 }
             }
         });

@@ -47,7 +47,7 @@ public class navigation extends AppCompatActivity {
                         int id = menuItem.getItemId();
                         Bundle bundle = new Bundle();
                         if (id == R.id.monitor10) {
-                            Intent intent = new Intent(navigation.this, CreatenewScreenActivity.class);
+                            Intent intent = new Intent(navigation.this, MonitorControlScreenActivity.class);
                             intent.putExtra("mirrorSerial", mirrorSerial);
                             startActivity(intent);
                         } else if (id == R.id.led10) {
@@ -56,10 +56,6 @@ public class navigation extends AppCompatActivity {
                             startActivity(intent);
                         } else if (id == R.id.speaker10) {
                             Intent intent = new Intent(navigation.this, SpeakerControlScreenActivity.class);
-                            intent.putExtra("mirrorSerial", mirrorSerial);
-                            startActivity(intent);
-                        } else if (id == R.id.setting10) {
-                            Intent intent = new Intent(navigation.this, Setting.class);
                             intent.putExtra("mirrorSerial", mirrorSerial);
                             startActivity(intent);
                         } else if (id == R.id.appbar) {

@@ -25,7 +25,7 @@
     Choisissez vos modules
     </string>
     <string name="comment9">
-    Lumière
+    Temps
     </string>
     <string name="comment10">
     Capteur
@@ -87,7 +87,11 @@
     <string name="comment32">
         ( Le mot de passe doit contenir au moins 6 caractères )
     </string>
-    <string name="ledtitle">Écran de contrôle led</string>
+    <string name="comment33">
+      Minuteur
+    </string>
+    <string name="ledtitle">Écran de contrôle capteur</string>
+    <string name="monitortitle">Écran de contrôle du moniteur</string>
     <string name="createScreentitle">Choisissez votre fond</string>
     <string name="username_error">username is empty</string>
 </resources>

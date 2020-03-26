@@ -25,7 +25,7 @@
     Pick your modules
     </string>
     <string name="comment9">
-    Light
+    Time
     </string>
     <string name="comment10">
     Sensor
@@ -87,7 +87,11 @@
     <string name="comment32">
       ( Password should have at least 6 characters )
     </string>
-    <string name="ledtitle">Led Control Screen</string>
+    <string name="comment33">
+      Timer
+    </string>
+    <string name="ledtitle">Sensor Control Screen</string>
+    <string name="monitortitle">Monitor Control Screen</string>
     <string name="createScreentitle">Pick your background</string>
     <string name="username_error">username is empty</string>
 </resources>
