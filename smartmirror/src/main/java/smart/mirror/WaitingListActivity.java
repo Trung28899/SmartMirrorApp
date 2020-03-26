@@ -118,7 +118,7 @@ public class WaitingListActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    int counter=0;
+                    boolean counter = false;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Mirror mirror = snapshot.getValue(Mirror.class);
                         System.out.println(mirror.serialNumber);
@@ -127,12 +127,13 @@ public class WaitingListActivity extends AppCompatActivity implements View.OnCli
 
                         if(mirror.serialNumber.equals(input)){
                             Intent intent = new Intent(WaitingListActivity.this, navigation.class);
+                            intent.putExtra("mirrorSerial", input);
                             startActivity(intent);
-                            counter++;
+                            counter = true;
                         }
                     }
 
-                    if(counter == 0 ){
+                    if(!counter){
                         Toast.makeText(WaitingListActivity.this, "Invalid Mirror Serial Number", Toast.LENGTH_SHORT).show();
                     }
                 }

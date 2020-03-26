@@ -22,37 +22,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-class LEDandSensor{
+class Sensor{
     String id;
-    boolean switchStateLight;
     boolean switchStateSensor;
-    String lightColor;
+    String timeOn;
+    String timeOff;
 
-    public LEDandSensor(){
+    public Sensor(){
 
     }
 
-    public LEDandSensor(String id, boolean switchStateLight, boolean switchStateSensor, String lightColor) {
+    public Sensor(String id, boolean switchStateSensor, String timeOn, String timeOff) {
         this.id = id;
-        this.switchStateLight = switchStateLight;
         this.switchStateSensor = switchStateSensor;
-        this.lightColor = lightColor;
+        this.timeOn = timeOn;
+        this.timeOff = timeOff;
     }
 
     public String getId() {
         return id;
     }
 
-    public boolean isSwitchStateLight() {
-        return switchStateLight;
-    }
-
     public boolean isSwitchStateSensor() {
         return switchStateSensor;
     }
 
-    public String getLightColor() {
-        return lightColor;
+    public String getTimeOn() {
+        return timeOn;
+    }
+
+    public String getTimeOff() {
+        return timeOff;
     }
 }
 
@@ -63,6 +63,7 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
     private RadioGroup radioGroupLights;
     private Button buttonUpdate;
     private RadioButton chosenButton;
+    private String mirrorSerial;
 
     private DatabaseReference ledDatabase;
 
@@ -75,8 +76,9 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
         setSupportActionBar(myToolbar);
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
+        mirrorSerial = getIntent().getStringExtra("mirrorSerial");
 
-        ledDatabase = FirebaseDatabase.getInstance().getReference("LED_Sensor");
+        ledDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/LED_Sensor");
 
         switchLight = (Switch) findViewById(R.id.switchLight);
         switchSensor = (Switch) findViewById(R.id.switchSensor);
@@ -122,9 +124,9 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
 
         String id = "-LucaKVQIte9Lkamrdw-";
 
-        LEDandSensor ledandSensor = new LEDandSensor(id, switchStateLight, switchStateSensor, "blue");
+        Sensor Sensor = new Sensor(id, switchStateSensor, "23:59", "23:59");
 
-        ledDatabase.child(id).setValue(ledandSensor);
+        ledDatabase.child(id).setValue(Sensor);
 
         Toast.makeText(this, "Setting Updated !", Toast.LENGTH_LONG).show();
     }
@@ -145,12 +147,12 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 DataSnapshot settingSnapshot = dataSnapshot;
-                LEDandSensor ledandSensor = new LEDandSensor("-LucaKVQIte9Lkamrdw-", true, true, "green");
+                Sensor Sensor = new Sensor("-LucaKVQIte9Lkamrdw-", true, "23:59", "23:59");
 
-                ledandSensor = dataSnapshot.child("-LucaKVQIte9Lkamrdw-").getValue(LEDandSensor.class);
+                Sensor = dataSnapshot.child("-LucaKVQIte9Lkamrdw-").getValue(Sensor.class);
 
-                switchLight.setChecked(ledandSensor.isSwitchStateLight());
-                switchSensor.setChecked(ledandSensor.isSwitchStateSensor());
+                //switchLight.setChecked(ledandSensor.isSwitchStateLight());
+                switchSensor.setChecked(Sensor.isSwitchStateSensor());
             }
 
             @Override

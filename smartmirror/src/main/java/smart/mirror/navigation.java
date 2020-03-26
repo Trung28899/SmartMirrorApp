@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class navigation extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth firebaseAuth;
+    private String mirrorSerial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class navigation extends AppCompatActivity {
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
         lmao.setHomeAsUpIndicator(R.drawable.ic_menu);
+        mirrorSerial = getIntent().getStringExtra("mirrorSerial");
 
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null){
@@ -46,15 +48,19 @@ public class navigation extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         if (id == R.id.monitor10) {
                             Intent intent = new Intent(navigation.this, CreatenewScreenActivity.class);
+                            intent.putExtra("mirrorSerial", mirrorSerial);
                             startActivity(intent);
                         } else if (id == R.id.led10) {
                             Intent intent = new Intent(navigation.this, ControlLedScreenActivity.class);
+                            intent.putExtra("mirrorSerial", mirrorSerial);
                             startActivity(intent);
                         } else if (id == R.id.speaker10) {
                             Intent intent = new Intent(navigation.this, SpeakerControlScreenActivity.class);
+                            intent.putExtra("mirrorSerial", mirrorSerial);
                             startActivity(intent);
                         } else if (id == R.id.setting10) {
                             Intent intent = new Intent(navigation.this, Setting.class);
+                            intent.putExtra("mirrorSerial", mirrorSerial);
                             startActivity(intent);
                         } else if (id == R.id.appbar) {
                             firebaseAuth.signOut();

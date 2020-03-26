@@ -27,20 +27,18 @@ import java.util.Calendar;
 class Speaker{
 
     String id;
-    boolean bluetoothState;
-    boolean cableState;
-    String time;
+    String timeOn;
+    String timeOff;
     int volume;
 
     public Speaker(){
 
     }
 
-    public Speaker(String id, boolean bluetoothState, boolean cableState, String time, int volume) {
+    public Speaker(String id, String timeOn, String timeOff, int volume) {
         this.id = id;
-        this.bluetoothState = bluetoothState;
-        this.cableState = cableState;
-        this.time = time;
+        this.timeOn = timeOn;
+        this.timeOff = timeOff;
         this.volume = volume;
     }
 
@@ -48,16 +46,12 @@ class Speaker{
         return id;
     }
 
-    public boolean isBluetoothState() {
-        return bluetoothState;
+    public String getTimeOn() {
+        return timeOn;
     }
 
-    public boolean isCableState() {
-        return cableState;
-    }
-
-    public String getTime() {
-        return time;
+    public String getTimeOff() {
+        return timeOff;
     }
 
     public int getVolume() {
@@ -73,6 +67,7 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
     private SeekBar seekBarVolume;
     private TimePicker timePicker;
     private Button buttonSubmit;
+    private String mirrorSerial;
 
     private DatabaseReference speakerDatabase;
 
@@ -84,8 +79,9 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         setSupportActionBar(myToolbar);
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
+        mirrorSerial = getIntent().getStringExtra("mirrorSerial");
 
-        speakerDatabase = FirebaseDatabase.getInstance().getReference("SpeakerDatabase");
+        speakerDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/SpeakerDatabase");
 
         switchBluetooth = (Switch) findViewById(R.id.switchBluetooth);
         switchCable = (Switch) findViewById(R.id.switchCable);
@@ -109,7 +105,7 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         String time = ""+currentHour+":"+currentMinute;
         int volume = seekBarVolume.getProgress();
 
-        Speaker speaker = new Speaker(id, switchStateBluetooth, switchStateCable, time, volume);
+        Speaker speaker = new Speaker(id, "23:58", "23:59", volume);
 
         speakerDatabase.child(id).setValue(speaker);
 
@@ -126,12 +122,12 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 DataSnapshot settingSnapshot = dataSnapshot;
-                Speaker speaker = new Speaker("-LuctwHiO7OlJIAP5ljR", true, true, "", 100);
+                Speaker speaker = new Speaker("-LuctwHiO7OlJIAP5ljR", "23:51", "23:59", 100);
 
                 speaker = dataSnapshot.child("-LuctwHiO7OlJIAP5ljR").getValue(Speaker.class);
 
-                switchBluetooth.setChecked(speaker.isBluetoothState());
-                switchCable.setChecked(speaker.isCableState());
+                //switchBluetooth.setChecked(speaker.isBluetoothState());
+                //switchCable.setChecked(speaker.isCableState());
             }
 
             @Override
