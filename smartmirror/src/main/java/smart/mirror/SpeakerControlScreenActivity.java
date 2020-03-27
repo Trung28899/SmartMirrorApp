@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -59,11 +60,11 @@ class Speaker{
 public class SpeakerControlScreenActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Switch switchTimeSpeaker;
-    private SeekBar seekBarVolume;
+    private SeekBar sBar;
     private TimePicker timePicker;
     private Button buttonSubmit;
     private String mirrorSerial;
-
+    private TextView tView;
     private DatabaseReference speakerDatabase;
 
     @Override
@@ -89,8 +90,27 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
                 }
             }
         });
-        seekBarVolume = (SeekBar) findViewById(R.id.seekBarVolume);
+        sBar = (SeekBar) findViewById(R.id.seekBarVolume);
         timePicker = (TimePicker) findViewById(R.id.TimePickerSpeaker);
+        tView = (TextView) findViewById(R.id.textView3);
+        tView.setText(sBar.getProgress() + "/" + sBar.getMax());
+        sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int pval = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                pval = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //write custom code to on start progress
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                tView.setText(pval + "/" + seekBar.getMax());
+            }
+        });
+
+
         buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
         buttonSubmit.setOnClickListener(this);
     }
@@ -105,7 +125,7 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
 
         boolean switchStateBluetooth = switchTimeSpeaker.isChecked();
         String time = ""+currentHour+":"+currentMinute;
-        int volume = seekBarVolume.getProgress();
+        int volume = sBar.getProgress();
 
         Speaker speaker = new Speaker(id, "23:58", "23:59", volume);
 

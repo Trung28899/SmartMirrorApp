@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="153dp"
-        android:layout_height="71dp"
+        android:layout_width="149dp"
+        android:layout_height="62dp"
         android:layout_marginStart="125dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="126dp"
@@ -71,8 +71,8 @@
 
     <SeekBar
         android:id="@+id/seekBarVolume"
-        android:layout_width="151dp"
-        android:layout_height="20dp"
+        android:layout_width="162dp"
+        android:layout_height="19dp"
         android:layout_marginTop="196dp"
         android:max="100"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -109,6 +109,16 @@
         android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="194dp"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/seekBarVolume"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
