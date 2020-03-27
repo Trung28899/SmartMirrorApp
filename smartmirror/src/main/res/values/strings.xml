@@ -93,6 +93,12 @@
     <string name="comment34">
       Monitor
     </string>
+    <string name="comment35">
+      Turn On Timer
+    </string>
+    <string name="comment36">
+      Turn Off Timer
+    </string>
     <string name="ledtitle">Sensor Control Screen</string>
     <string name="monitortitle">Monitor Control Screen</string>
     <string name="createScreentitle">Pick your background</string>

@@ -93,6 +93,12 @@
     <string name="comment34">
       Moniteur
     </string>
+    <string name="comment35">
+      Activer la minuterie
+    </string>
+    <string name="comment36">
+        Désactiver la minuterie
+    </string>
     <string name="ledtitle">Écran de contrôle capteur</string>
     <string name="monitortitle">Écran de contrôle du moniteur</string>
     <string name="createScreentitle">Choisissez votre fond</string>
