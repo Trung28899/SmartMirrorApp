@@ -42,8 +42,8 @@
         android:id="@+id/switchTimeMonitor"
         android:layout_width="104dp"
         android:layout_height="39dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginStart="388dp"
+        android:layout_marginTop="124dp"
         android:text="@string/comment9"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +53,9 @@
         android:id="@+id/switchSensorMonitor"
         android:layout_width="124dp"
         android:layout_height="47dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="188dp"
-        android:text="@string/comment10"
+        android:layout_marginStart="388dp"
+        android:layout_marginTop="196dp"
+        android:text="@string/comment34"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="320dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="280dp"
         android:background="@drawable/round_btlogin"
         android:text="Done"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
         android:layout_width="70dp"
         android:layout_height="59dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintStart_toEndOf="@+id/switchTimeMonitor"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -89,15 +89,66 @@
         app:layout_constraintStart_toEndOf="@+id/switchSensorMonitor"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <TimePicker
-        android:id="@+id/TimePickerMonitor"
-        android:layout_width="296dp"
-        android:layout_height="141dp"
-        android:layout_marginStart="360dp"
-        android:layout_marginTop="108dp"
-        android:timePickerMode="spinner"
-        app:layout_constraintStart_toStartOf="parent"
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="112dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="84dp"
+        android:text="@string/comment33"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/background"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="89dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:text="0:00"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/textView38"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="89dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:text="0:00"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/textView39"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="122dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="40dp"
+        android:text="Turn On Timer"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="122dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="44dp"
+        android:text="Turn Off Timer"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

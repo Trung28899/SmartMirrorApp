@@ -3,17 +3,20 @@ package smart.mirror;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
-
+import android.app.TimePickerDialog;
+import android.text.InputType;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import android.widget.TimePicker;
+import java.util.Calendar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,8 +64,11 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
     private RadioGroup radioGroupLights;
     private Button buttonUpdate;
     private RadioButton chosenButton;
+    private TimePickerDialog picker;
+    private TimePickerDialog picker1;
     private String mirrorSerial;
-
+    private EditText eText;
+    private EditText eText1;
     private DatabaseReference ledDatabase;
 
 
@@ -108,6 +114,53 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
             }
         });
 
+        eText=(EditText) findViewById(R.id.editText);
+        eText.setInputType(InputType.TYPE_NULL);
+        eText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+                // time picker dialog
+                picker = new TimePickerDialog(ControlLedScreenActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                eText.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                picker.show();
+            }
+        });
+
+        eText1=(EditText) findViewById(R.id.editText2);
+        eText1.setInputType(InputType.TYPE_NULL);
+        eText1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr1 = Calendar.getInstance();
+                int hour1 = cldr1.get(Calendar.HOUR_OF_DAY);
+                int minutes1 = cldr1.get(Calendar.MINUTE);
+                // time picker dialog
+                picker1 = new TimePickerDialog(ControlLedScreenActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp1, int sHour1, int sMinute1) {
+                                eText1.setText(sHour1 + ":" + sMinute1);
+                            }
+                        }, hour1, minutes1, true);
+                picker1.show();
+            }
+        });
+        /*btnGet=(Button)findViewById(R.id.button1);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvw.setText("Selected Time: "+ eText.getText());
+            }
+        });*/
+
 
     }
 
@@ -147,7 +200,7 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
                 Sensor = dataSnapshot.child("-LucaKVQIte9Lkamrdw-").getValue(Sensor.class);
 
                 //switchLight.setChecked(ledandSensor.isSwitchStateLight());
-                switchSensor.setChecked(Sensor.isSwitchStateSensor());
+                //switchSensor.setChecked(Sensor.isSwitchStateSensor());
             }
 
             @Override

@@ -88,7 +88,10 @@
         ( Le mot de passe doit contenir au moins 6 caractères )
     </string>
     <string name="comment33">
-      Minuteur
+      Auto Minuteur
+    </string>
+    <string name="comment34">
+      Moniteur
     </string>
     <string name="ledtitle">Écran de contrôle capteur</string>
     <string name="monitortitle">Écran de contrôle du moniteur</string>

@@ -88,7 +88,10 @@
       ( Password should have at least 6 characters )
     </string>
     <string name="comment33">
-      Timer
+      Auto Timer
+    </string>
+    <string name="comment34">
+      Monitor
     </string>
     <string name="ledtitle">Sensor Control Screen</string>
     <string name="monitortitle">Monitor Control Screen</string>

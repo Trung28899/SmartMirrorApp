@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <View
         android:id="@+id/background"
         android:layout_width="0dp"
@@ -12,8 +13,10 @@
         android:background="@drawable/back2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,10 +29,10 @@
 
     <TextView
         android:id="@+id/textView30"
-        android:layout_width="425dp"
-        android:layout_height="99dp"
+        android:layout_width="420dp"
+        android:layout_height="57dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="150dp"
         android:text="@string/monitortitle"
         android:textColor="#000000"
@@ -39,22 +42,22 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Switch
-        android:id="@+id/switchTimeSensor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="172dp"
+        android:id="@+id/switchTimeMonitor"
+        android:layout_width="119dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="168dp"
         android:text="@string/comment9"
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Switch
-        android:id="@+id/switchSensor"
+        android:id="@+id/switchSensorMonitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="264dp"
         android:text="@string/comment10"
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,54 +65,95 @@
 
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="216dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="660dp"
+        android:layout_width="157dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="712dp"
         android:background="@drawable/round_btlogin"
         android:text="Done"
-        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/imageView29"
-        android:layout_width="107dp"
-        android:layout_height="78dp"
+        android:id="@+id/imageView2"
+        android:layout_width="98dp"
+        android:layout_height="77dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="156dp"
-        app:layout_constraintStart_toEndOf="@+id/switchTimeSensor"
+        android:layout_marginTop="152dp"
+        android:textSize="40dp"
+        app:layout_constraintStart_toEndOf="@+id/switchTimeMonitor"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/imageView30"
-        android:layout_width="106dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="264dp"
-        app:layout_constraintStart_toEndOf="@+id/switchSensor"
+        android:id="@+id/imageView10"
+        android:layout_width="98dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="248dp"
+        app:layout_constraintStart_toEndOf="@+id/switchSensorMonitor"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/textView33"
-        android:layout_width="104dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="384dp"
+        android:layout_width="210dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="372dp"
         android:text="@string/comment33"
         android:textColor="#000000"
-        android:textSize="36dp"
+        android:textSize="40dp"
         app:layout_constraintStart_toStartOf="@+id/background"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <TimePicker
-        android:id="@+id/TimePickerMonitor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="428dp"
-        android:timePickerMode="spinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="117dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:text="0:00"
+        android:textColor="#000000"
+        android:textSize="36dp"
+        app:layout_constraintStart_toEndOf="@+id/textView38"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="124dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:text="0:00"
+        android:textColor="#000000"
+        android:textSize="36dp"
+        app:layout_constraintStart_toEndOf="@+id/textView39"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="232dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="44dp"
+        android:text="Turn On Timer"
+        android:textColor="#000000"
+        android:textSize="36dp"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="232dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="36dp"
+        android:text="Turn Off Timer"
+        android:textColor="#000000"
+        android:textSize="36dp"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
