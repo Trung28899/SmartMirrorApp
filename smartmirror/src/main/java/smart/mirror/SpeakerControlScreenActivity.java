@@ -80,8 +80,6 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         tView = (TextView) findViewById(R.id.textView3);
         tView.setText(sBar.getProgress() + "%");
         buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
-
-
         switchTimeSpeaker.setOnClickListener(this);
         buttonSubmit.setOnClickListener(this);
 
@@ -117,33 +115,6 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         Toast.makeText(this, "Data Uploaded Successfully !", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Pulling info from database
-        speakerDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                DataSnapshot settingSnapshot = dataSnapshot;
-                Speaker speaker = new Speaker("false", "0", "00:00");
-
-                speaker = dataSnapshot.getValue(Speaker.class);
-
-                switchTimeSpeaker.setChecked(Boolean.parseBoolean(speaker.getTimerState()));
-                int progress = Integer.parseInt(speaker.getVolume());
-                sBar.setProgress(progress);
-                tView.setText(speaker.getVolume()+"%");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Something Wrong", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-    }
 
     @Override
     public void onClick(View v) {
@@ -162,6 +133,35 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         } else {
             img1.setImageDrawable(getDrawable(R.drawable.timeoff));
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Pulling info from database
+        speakerDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                DataSnapshot settingSnapshot = dataSnapshot;
+                Speaker speaker = new Speaker("false", "0", "00:00");
+
+                speaker = dataSnapshot.getValue(Speaker.class);
+
+                switchTimeSpeaker.setChecked(Boolean.parseBoolean(speaker.getTimerState()));
+                int progress = Integer.parseInt(speaker.getVolume());
+                sBar.setProgress(progress);
+                tView.setText(speaker.getVolume()+"%");
+                setImg(img7, switchTimeSpeaker);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Something Wrong", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
 

@@ -75,7 +75,7 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
     private TimePickerDialog picker4;
     private EditText eText3;
     private EditText eText4;
-    private ImageView img1, img2;
+    private ImageView img3, img4;
     private DatabaseReference monitorDatabase;
 
 
@@ -86,8 +86,8 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         switchMonitor = (Switch) findViewById(R.id.switchTimeMonitor);
         switchSensorMonitor = (Switch) findViewById(R.id.switchSensorMonitor);
-        img1 = (ImageView) findViewById(R.id.imageView29);
-        img2 = (ImageView) findViewById(R.id.imageView30);
+        img3 = (ImageView) findViewById(R.id.imageView29);
+        img4 = (ImageView) findViewById(R.id.imageView30);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         eText3=(EditText) findViewById(R.id.editText3);
         eText3.setInputType(InputType.TYPE_NULL);
@@ -100,8 +100,8 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
         monitorDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/Monitor");
 
 
-        img1.setImageDrawable(getDrawable(R.drawable.timeoff));
-        img2.setImageDrawable(getDrawable(R.drawable.computeroff));
+        img3.setImageDrawable(getDrawable(R.drawable.timeoff));
+        img4.setImageDrawable(getDrawable(R.drawable.computeroff));
 
 
         buttonUpdate.setOnClickListener(this);
@@ -134,11 +134,11 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
         }
 
         if (v == switchMonitor){
-            setImg(img1, switchMonitor);
+            setImg3(img3, switchMonitor);
         }
 
         if(v == switchSensorMonitor){
-            setImg(img2, switchSensorMonitor);
+            setImg4(img4, switchSensorMonitor);
         }
 
         if(v == eText3){
@@ -172,11 +172,18 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
         }
     }
 
-    private void setImg(ImageView img1, Switch switchMonitor) {
+    private void setImg3(ImageView img3, Switch switchMonitor) {
         if (switchMonitor.isChecked()){
-            img1.setImageDrawable(getDrawable(R.drawable.timeon));
+            img3.setImageDrawable(getDrawable(R.drawable.timeon));
         } else {
-            img1.setImageDrawable(getDrawable(R.drawable.timeoff));
+            img3.setImageDrawable(getDrawable(R.drawable.timeoff));
+        }
+    }
+    private void setImg4(ImageView img4, Switch switchSensorMonitor) {
+        if (switchSensorMonitor.isChecked()){
+            img4.setImageDrawable(getDrawable(R.drawable.computeron));
+        } else {
+            img4.setImageDrawable(getDrawable(R.drawable.computeroff));
         }
     }
 
@@ -196,8 +203,8 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
                 switchSensorMonitor.setChecked(Boolean.parseBoolean(monitor.getMonitorState()));
                 eText3.setText(monitor.getTimeOn());
                 eText4.setText(monitor.getTimeOff());
-                setImg(img1, switchMonitor);
-                setImg(img2, switchSensorMonitor);
+                setImg3(img3, switchMonitor);
+                setImg4(img4, switchSensorMonitor);
             }
 
             @Override

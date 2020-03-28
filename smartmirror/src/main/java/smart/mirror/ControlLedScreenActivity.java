@@ -122,11 +122,11 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
         }
 
         if (v == switchLight){
-            setImg(img1, switchLight);
+            setImg1(img1, switchLight);
         }
 
         if (v == switchSensor) {
-            setImg(img2, switchSensor);
+            setImg2(img2, switchSensor);
         }
 
         if (v == eText){
@@ -160,11 +160,19 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
         }
     }
 
-    private void setImg(ImageView im, Switch switchM) {
-        if (switchM.isChecked()){
-            im.setImageDrawable(getDrawable(R.drawable.timeon));
+    private void setImg1(ImageView im1, Switch switchM1) {
+        if (switchM1.isChecked()){
+            im1.setImageDrawable(getDrawable(R.drawable.timeon));
         } else {
-            im.setImageDrawable(getDrawable(R.drawable.timeoff));
+            im1.setImageDrawable(getDrawable(R.drawable.timeoff));
+        }
+    }
+
+    private void setImg2(ImageView im2, Switch switchM2) {
+        if (switchM2.isChecked()){
+            im2.setImageDrawable(getDrawable(R.drawable.sensoron));
+        } else {
+            im2.setImageDrawable(getDrawable(R.drawable.sensoroff));
         }
     }
 
@@ -185,8 +193,8 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
                 switchSensor.setChecked(Boolean.parseBoolean(sensor.getSensorState()));
                 eText.setText(sensor.timeOn);
                 eText.setText(sensor.timeOff);
-                setImg(img1, switchLight);
-                setImg(img2, switchSensor);
+                setImg1(img1, switchLight);
+                setImg2(img2, switchSensor);
             }
 
             @Override
