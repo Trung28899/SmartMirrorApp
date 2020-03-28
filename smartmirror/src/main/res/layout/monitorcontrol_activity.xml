@@ -78,7 +78,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="112dp"
         app:layout_constraintStart_toEndOf="@+id/switchTimeMonitor"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/timeoff" />
 
     <ImageView
         android:id="@+id/imageView30"
@@ -87,7 +88,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="184dp"
         app:layout_constraintStart_toEndOf="@+id/switchSensorMonitor"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/computeroff" />
 
     <TextView
         android:id="@+id/textView33"

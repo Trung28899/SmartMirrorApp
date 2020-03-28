@@ -23,36 +23,30 @@ import com.google.firebase.database.ValueEventListener;
 
 class Speaker{
 
-    String id;
-    String timeOn;
-    String timeOff;
-    int volume;
+    String timerState;
+    String volume;
+    String timeSet;
 
     public Speaker(){
 
     }
 
-    public Speaker(String id, String timeOn, String timeOff, int volume) {
-        this.id = id;
-        this.timeOn = timeOn;
-        this.timeOff = timeOff;
+    public Speaker(String timerState, String volume, String timeSet) {
+        this.timerState = timerState;
         this.volume = volume;
+        this.timeSet = timeSet;
     }
 
-    public String getId() {
-        return id;
+    public String getTimerState() {
+        return timerState;
     }
 
-    public String getTimeOn() {
-        return timeOn;
-    }
-
-    public String getTimeOff() {
-        return timeOff;
-    }
-
-    public int getVolume() {
+    public String getVolume() {
         return volume;
+    }
+
+    public String getTimeSet() {
+        return timeSet;
     }
 }
 
@@ -66,6 +60,7 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
     private String mirrorSerial;
     private TextView tView;
     private DatabaseReference speakerDatabase;
+    private ImageView img7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,24 +71,20 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
         mirrorSerial = getIntent().getStringExtra("mirrorSerial");
-        speakerDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/SpeakerDatabase");
+        speakerDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/Speaker");
         switchTimeSpeaker = (Switch) findViewById(R.id.switchTimeSpeaker);
-        final ImageView img7 = (ImageView) findViewById(R.id.imageView7);
+        img7 = (ImageView) findViewById(R.id.imageView7);
         img7.setImageDrawable(getDrawable(R.drawable.timeoff));
-        switchTimeSpeaker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ( switchTimeSpeaker.isChecked()){
-                    img7.setImageDrawable(getDrawable(R.drawable.timeon));
-                } else {
-                    img7.setImageDrawable(getDrawable(R.drawable.timeoff));
-                }
-            }
-        });
         sBar = (SeekBar) findViewById(R.id.seekBarVolume);
         timePicker = (TimePicker) findViewById(R.id.TimePickerSpeaker);
         tView = (TextView) findViewById(R.id.textView3);
-        tView.setText(sBar.getProgress() + "/" + sBar.getMax());
+        tView.setText(sBar.getProgress() + "%");
+        buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
+
+
+        switchTimeSpeaker.setOnClickListener(this);
+        buttonSubmit.setOnClickListener(this);
+
         sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int pval = 0;
             @Override
@@ -106,30 +97,22 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                tView.setText(pval + "/" + seekBar.getMax());
+                tView.setText(pval + "%");
             }
         });
-
-
-        buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
-        buttonSubmit.setOnClickListener(this);
     }
 
 
     private void upDateData(){
-        int currentHour = timePicker.getHour();
-        int currentMinute = timePicker.getMinute();
+        String timerState = Boolean.toString(switchTimeSpeaker.isChecked());
+        String volume = Integer.toString(sBar.getProgress());
+        String time = ""+timePicker.getCurrentHour()+":"+ timePicker.getCurrentMinute();
 
         //String id = speakerDatabase.push().getKey();
-        String id = "-LuctwHiO7OlJIAP5ljR";
 
-        boolean switchStateBluetooth = switchTimeSpeaker.isChecked();
-        String time = ""+currentHour+":"+currentMinute;
-        int volume = sBar.getProgress();
+        Speaker speaker = new Speaker(timerState, volume, time);
 
-        Speaker speaker = new Speaker(id, "23:58", "23:59", volume);
-
-        speakerDatabase.child(id).setValue(speaker);
+        speakerDatabase.setValue(speaker);
 
         Toast.makeText(this, "Data Uploaded Successfully !", Toast.LENGTH_LONG).show();
     }
@@ -144,12 +127,14 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 DataSnapshot settingSnapshot = dataSnapshot;
-                Speaker speaker = new Speaker("-LuctwHiO7OlJIAP5ljR", "23:51", "23:59", 100);
+                Speaker speaker = new Speaker("false", "0", "00:00");
 
-                speaker = dataSnapshot.child("-LuctwHiO7OlJIAP5ljR").getValue(Speaker.class);
+                speaker = dataSnapshot.getValue(Speaker.class);
 
-                //switchBluetooth.setChecked(speaker.isBluetoothState());
-                //switchCable.setChecked(speaker.isCableState());
+                switchTimeSpeaker.setChecked(Boolean.parseBoolean(speaker.getTimerState()));
+                int progress = Integer.parseInt(speaker.getVolume());
+                sBar.setProgress(progress);
+                tView.setText(speaker.getVolume()+"%");
             }
 
             @Override
@@ -165,7 +150,20 @@ public class SpeakerControlScreenActivity extends AppCompatActivity implements V
         if(v == buttonSubmit){
             upDateData();
         }
+
+        if(v == switchTimeSpeaker){
+            setImg(img7, switchTimeSpeaker);
+        }
     }
+
+    private void setImg(ImageView img1, Switch switchMonitor) {
+        if (switchMonitor.isChecked()){
+            img1.setImageDrawable(getDrawable(R.drawable.timeon));
+        } else {
+            img1.setImageDrawable(getDrawable(R.drawable.timeoff));
+        }
+    }
+
 
     @Override
     public boolean onSupportNavigateUp(){

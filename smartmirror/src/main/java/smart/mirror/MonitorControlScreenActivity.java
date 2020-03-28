@@ -2,6 +2,7 @@ package smart.mirror;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +14,54 @@ import android.text.InputType;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Calendar;
+
+class Monitor{
+    String timerState;
+    String monitorState;
+    String timeOn;
+    String timeOff;
+
+    public Monitor(){
+
+    }
+
+    public Monitor( String timerState, String monitorState, String timeOn, String timeOff) {
+        this.timerState = timerState;
+        this.monitorState = monitorState;
+        this.timeOn = timeOn;
+        this.timeOff = timeOff;
+    }
+
+    public String getTimerState() {
+        return timerState;
+    }
+
+    public String getMonitorState() {
+        return monitorState;
+    }
+
+    public String getTimeOn() {
+        return timeOn;
+    }
+
+    public String getTimeOff() {
+        return timeOff;
+    }
+}
 
 public class MonitorControlScreenActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -32,6 +75,8 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
     private TimePickerDialog picker4;
     private EditText eText3;
     private EditText eText4;
+    private ImageView img1, img2;
+    private DatabaseReference monitorDatabase;
 
 
     @Override
@@ -39,99 +84,128 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.monitorcontrol_activity);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        switchMonitor = (Switch) findViewById(R.id.switchTimeMonitor);
+        switchSensorMonitor = (Switch) findViewById(R.id.switchSensorMonitor);
+        img1 = (ImageView) findViewById(R.id.imageView29);
+        img2 = (ImageView) findViewById(R.id.imageView30);
+        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        eText3=(EditText) findViewById(R.id.editText3);
+        eText3.setInputType(InputType.TYPE_NULL);
+        eText4=(EditText) findViewById(R.id.editText4);
+        eText4.setInputType(InputType.TYPE_NULL);
         setSupportActionBar(myToolbar);
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
         mirrorSerial = getIntent().getStringExtra("mirrorSerial");
+        monitorDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/Monitor");
 
-        switchMonitor = (Switch) findViewById(R.id.switchTimeMonitor);
-        switchSensorMonitor = (Switch) findViewById(R.id.switchSensorMonitor);
-        final ImageView img1 = (ImageView) findViewById(R.id.imageView29);
-        final ImageView img2 = (ImageView) findViewById(R.id.imageView30);
+
         img1.setImageDrawable(getDrawable(R.drawable.timeoff));
         img2.setImageDrawable(getDrawable(R.drawable.computeroff));
-        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+
+
         buttonUpdate.setOnClickListener(this);
-        switchMonitor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (switchMonitor.isChecked()){
-                    img1.setImageDrawable(getDrawable(R.drawable.timeon));
-                } else {
-                    img1.setImageDrawable(getDrawable(R.drawable.timeoff));
-                }
-            }
-        });
-
-        switchSensorMonitor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (switchSensorMonitor.isChecked()){
-                    img2.setImageDrawable(getDrawable(R.drawable.computeron));
-                } else {
-                    img2.setImageDrawable(getDrawable(R.drawable.computeroff));
-                }
-            }
-        });
-
-
-        eText3=(EditText) findViewById(R.id.editText3);
-        eText3.setInputType(InputType.TYPE_NULL);
-        eText3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr3 = Calendar.getInstance();
-                int hour3 = cldr3.get(Calendar.HOUR_OF_DAY);
-                int minutes3 = cldr3.get(Calendar.MINUTE);
-                // time picker dialog
-                picker3 = new TimePickerDialog(MonitorControlScreenActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker tp3, int sHour3, int sMinute3) {
-                                eText3.setText(sHour3 + ":" + sMinute3);
-                            }
-                        }, hour3, minutes3, true);
-                picker3.show();
-            }
-        });
-
-        eText4=(EditText) findViewById(R.id.editText4);
-        eText4.setInputType(InputType.TYPE_NULL);
-        eText4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr4 = Calendar.getInstance();
-                int hour4 = cldr4.get(Calendar.HOUR_OF_DAY);
-                int minutes4 = cldr4.get(Calendar.MINUTE);
-                // time picker dialog
-                picker4 = new TimePickerDialog(MonitorControlScreenActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker tp4, int sHour4, int sMinute4) {
-                                eText4.setText(sHour4 + ":" + sMinute4);
-                            }
-                        }, hour4, minutes4, true);
-                picker4.show();
-            }
-        });
-        /*btnGet=(Button)findViewById(R.id.button1);
-        btnGet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvw.setText("Selected Time: "+ eText.getText());
-            }
-        });*/
+        switchMonitor.setOnClickListener(this);
+        switchSensorMonitor.setOnClickListener(this);
+        eText3.setOnClickListener(this);
+        eText4.setOnClickListener(this);
 
     }
 
+    private void updateData(){
+        String timerState = Boolean.toString(switchMonitor.isChecked());
+        String monitorState = Boolean.toString(switchSensorMonitor.isChecked());
+        String timerOn = eText3.getText().toString().trim();
+        String timerOff = eText4.getText().toString().trim();
+
+        Monitor monitor = new Monitor(timerState, monitorState, timerOn, timerOff);
+
+        monitorDatabase.setValue(monitor);
+
+        Toast.makeText(this, "Data Uploaded Successfully !", Toast.LENGTH_LONG).show();
+    }
 
 
+    // Button listener action
     @Override
     public void onClick(View v) {
         if(v == buttonUpdate){
-            Intent intent = new Intent(MonitorControlScreenActivity.this, navigation.class);
-            startActivity(intent);
+            updateData();
         }
+
+        if (v == switchMonitor){
+            setImg(img1, switchMonitor);
+        }
+
+        if(v == switchSensorMonitor){
+            setImg(img2, switchSensorMonitor);
+        }
+
+        if(v == eText3){
+            final Calendar cldr3 = Calendar.getInstance();
+            int hour3 = cldr3.get(Calendar.HOUR_OF_DAY);
+            int minutes3 = cldr3.get(Calendar.MINUTE);
+            // time picker dialog
+            picker3 = new TimePickerDialog(MonitorControlScreenActivity.this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker tp3, int sHour3, int sMinute3) {
+                            eText3.setText(sHour3 + ":" + sMinute3);
+                        }
+                    }, hour3, minutes3, true);
+            picker3.show();
+        }
+
+        if(v == eText4){
+            final Calendar cldr4 = Calendar.getInstance();
+            int hour4 = cldr4.get(Calendar.HOUR_OF_DAY);
+            int minutes4 = cldr4.get(Calendar.MINUTE);
+            // time picker dialog
+            picker4 = new TimePickerDialog(MonitorControlScreenActivity.this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker tp4, int sHour4, int sMinute4) {
+                            eText4.setText(sHour4 + ":" + sMinute4);
+                        }
+                    }, hour4, minutes4, true);
+            picker4.show();
+        }
+    }
+
+    private void setImg(ImageView img1, Switch switchMonitor) {
+        if (switchMonitor.isChecked()){
+            img1.setImageDrawable(getDrawable(R.drawable.timeon));
+        } else {
+            img1.setImageDrawable(getDrawable(R.drawable.timeoff));
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        monitorDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                DataSnapshot settingSnapshot = dataSnapshot;
+                Monitor monitor = new Monitor("false", "false", "00:00", "00:00");
+                monitor = dataSnapshot.getValue(Monitor.class);
+
+                switchMonitor.setChecked(Boolean.parseBoolean(monitor.getTimerState()));
+                switchSensorMonitor.setChecked(Boolean.parseBoolean(monitor.getMonitorState()));
+                eText3.setText(monitor.getTimeOn());
+                eText4.setText(monitor.getTimeOff());
+                setImg(img1, switchMonitor);
+                setImg(img2, switchSensorMonitor);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Something Wrong", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     @Override
@@ -140,3 +214,12 @@ public class MonitorControlScreenActivity extends AppCompatActivity implements V
         return true;
     }
 }
+
+
+       /*btnGet=(Button)findViewById(R.id.button1);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvw.setText("Selected Time: "+ eText.getText());
+            }
+        });*/

@@ -24,8 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 class Sensor{
-    String id;
-    boolean switchStateSensor;
+    String timerState;
+    String sensorState;
     String timeOn;
     String timeOff;
 
@@ -33,19 +33,19 @@ class Sensor{
 
     }
 
-    public Sensor(String id, boolean switchStateSensor, String timeOn, String timeOff) {
-        this.id = id;
-        this.switchStateSensor = switchStateSensor;
+    public Sensor(String timerState, String sensorState, String timeOn, String timeOff) {
+        this.timerState = timerState;
+        this.sensorState = sensorState;
         this.timeOn = timeOn;
         this.timeOff = timeOff;
     }
 
-    public String getId() {
-        return id;
+    public String getTimerState() {
+        return timerState;
     }
 
-    public boolean isSwitchStateSensor() {
-        return switchStateSensor;
+    public String getSensorState() {
+        return sensorState;
     }
 
     public String getTimeOn() {
@@ -70,6 +70,7 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
     private EditText eText;
     private EditText eText1;
     private DatabaseReference ledDatabase;
+    private ImageView img1, img2;
 
 
     @Override
@@ -81,100 +82,35 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
         ActionBar lmao = getSupportActionBar();
         lmao.setDisplayHomeAsUpEnabled(true);
         mirrorSerial = getIntent().getStringExtra("mirrorSerial");
-
-        ledDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/LED_Sensor");
-
+        ledDatabase = FirebaseDatabase.getInstance().getReference("Mirror_Serial_Numbers/"+mirrorSerial+"/Sensor");
         switchLight = (Switch) findViewById(R.id.switchTimeSensor);
         switchSensor = (Switch) findViewById(R.id.switchSensor);
-        final ImageView img1 = (ImageView) findViewById(R.id.imageView2);
-        final ImageView img2 = (ImageView) findViewById(R.id.imageView10);
+        img1 = (ImageView) findViewById(R.id.imageView2);
+        img2 = (ImageView) findViewById(R.id.imageView10);
         img1.setImageDrawable(getDrawable(R.drawable.timeoff));
         img2.setImageDrawable(getDrawable(R.drawable.sensoroff));
-        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
-        buttonUpdate.setOnClickListener(this);
-        switchLight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (switchLight.isChecked()){
-                    img1.setImageDrawable(getDrawable(R.drawable.timeon));
-                } else {
-                    img1.setImageDrawable(getDrawable(R.drawable.timeoff));
-                }
-            }
-        });
-
-        switchSensor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (switchSensor.isChecked()){
-                    img2.setImageDrawable(getDrawable(R.drawable.sensoron));
-                } else {
-                    img2.setImageDrawable(getDrawable(R.drawable.sensoroff));
-                }
-            }
-        });
-
         eText=(EditText) findViewById(R.id.editText);
         eText.setInputType(InputType.TYPE_NULL);
-        eText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
-                int minutes = cldr.get(Calendar.MINUTE);
-                // time picker dialog
-                picker = new TimePickerDialog(ControlLedScreenActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                eText.setText(sHour + ":" + sMinute);
-                            }
-                        }, hour, minutes, true);
-                picker.show();
-            }
-        });
-
         eText1=(EditText) findViewById(R.id.editText2);
         eText1.setInputType(InputType.TYPE_NULL);
-        eText1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr1 = Calendar.getInstance();
-                int hour1 = cldr1.get(Calendar.HOUR_OF_DAY);
-                int minutes1 = cldr1.get(Calendar.MINUTE);
-                // time picker dialog
-                picker1 = new TimePickerDialog(ControlLedScreenActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker tp1, int sHour1, int sMinute1) {
-                                eText1.setText(sHour1 + ":" + sMinute1);
-                            }
-                        }, hour1, minutes1, true);
-                picker1.show();
-            }
-        });
-        /*btnGet=(Button)findViewById(R.id.button1);
-        btnGet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvw.setText("Selected Time: "+ eText.getText());
-            }
-        });*/
 
-
+        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        buttonUpdate.setOnClickListener(this);
+        switchLight.setOnClickListener(this);
+        switchSensor.setOnClickListener(this);
+        eText.setOnClickListener(this);
+        eText1.setOnClickListener(this);
     }
 
-    private void updateLights(){
-        boolean switchStateLight = switchLight.isChecked();
-        boolean switchStateSensor = switchSensor.isChecked();
-        //String lightColor = chosenButton.getText().toString();
-        //String id = ledDatabase.push().getKey();
+    private void updateSensor(){
+        String timerState = Boolean.toString(switchLight.isChecked());
+        String sensorState = Boolean.toString(switchSensor.isChecked());
+        String timerOn = eText.getText().toString().trim();
+        String timerOff = eText1.getText().toString().trim();
 
-        String id = "-LucaKVQIte9Lkamrdw-";
+        Sensor Sensor = new Sensor(timerState, sensorState, timerOn, timerOff);
 
-        Sensor Sensor = new Sensor(id, switchStateSensor, "23:59", "23:59");
-
-        ledDatabase.child(id).setValue(Sensor);
+        ledDatabase.setValue(Sensor);
 
         Toast.makeText(this, "Setting Updated !", Toast.LENGTH_LONG).show();
     }
@@ -182,7 +118,53 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
         if(v == buttonUpdate){
-            updateLights();
+            updateSensor();
+        }
+
+        if (v == switchLight){
+            setImg(img1, switchLight);
+        }
+
+        if (v == switchSensor) {
+            setImg(img2, switchSensor);
+        }
+
+        if (v == eText){
+            final Calendar cldr = Calendar.getInstance();
+            int hour = cldr.get(Calendar.HOUR_OF_DAY);
+            int minutes = cldr.get(Calendar.MINUTE);
+            // time picker dialog
+            picker = new TimePickerDialog(ControlLedScreenActivity.this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                            eText.setText(sHour + ":" + sMinute);
+                        }
+                    }, hour, minutes, true);
+            picker.show();
+        }
+
+        if (v == eText1){
+            final Calendar cldr1 = Calendar.getInstance();
+            int hour1 = cldr1.get(Calendar.HOUR_OF_DAY);
+            int minutes1 = cldr1.get(Calendar.MINUTE);
+            // time picker dialog
+            picker1 = new TimePickerDialog(ControlLedScreenActivity.this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker tp1, int sHour1, int sMinute1) {
+                            eText1.setText(sHour1 + ":" + sMinute1);
+                        }
+                    }, hour1, minutes1, true);
+            picker1.show();
+        }
+    }
+
+    private void setImg(ImageView im, Switch switchM) {
+        if (switchM.isChecked()){
+            im.setImageDrawable(getDrawable(R.drawable.timeon));
+        } else {
+            im.setImageDrawable(getDrawable(R.drawable.timeoff));
         }
     }
 
@@ -195,12 +177,16 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 DataSnapshot settingSnapshot = dataSnapshot;
-                Sensor Sensor = new Sensor("-LucaKVQIte9Lkamrdw-", true, "23:59", "23:59");
+                Sensor sensor = new Sensor("false", "false", "00:00", "00:00");
 
-                Sensor = dataSnapshot.child("-LucaKVQIte9Lkamrdw-").getValue(Sensor.class);
+                sensor = dataSnapshot.getValue(Sensor.class);
 
-                //switchLight.setChecked(ledandSensor.isSwitchStateLight());
-                //switchSensor.setChecked(Sensor.isSwitchStateSensor());
+                switchLight.setChecked(Boolean.parseBoolean(sensor.getTimerState()));
+                switchSensor.setChecked(Boolean.parseBoolean(sensor.getSensorState()));
+                eText.setText(sensor.timeOn);
+                eText.setText(sensor.timeOff);
+                setImg(img1, switchLight);
+                setImg(img2, switchSensor);
             }
 
             @Override
@@ -217,3 +203,12 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
         return true;
     }
 }
+
+
+/*btnGet=(Button)findViewById(R.id.button1);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvw.setText("Selected Time: "+ eText.getText());
+            }
+        });*/
