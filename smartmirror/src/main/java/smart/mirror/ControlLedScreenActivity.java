@@ -192,7 +192,7 @@ public class ControlLedScreenActivity extends AppCompatActivity implements View.
                 switchLight.setChecked(Boolean.parseBoolean(sensor.getTimerState()));
                 switchSensor.setChecked(Boolean.parseBoolean(sensor.getSensorState()));
                 eText.setText(sensor.timeOn);
-                eText.setText(sensor.timeOff);
+                eText1.setText(sensor.timeOff);
                 setImg1(img1, switchLight);
                 setImg2(img2, switchSensor);
             }
